@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: Project Intelligence Platform API
+  version: 1.0.0
+  description: Core API contract for project delivery, resourcing, time, expenses, and financial readiness.
+servers:
+  - url: https://api.project-intelligence.example.com
+security:
+  - bearerAuth: []
+paths:
+  /clients:
+    get:
+      summary: List client organisations
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create client organisation
+      responses:
+        '201':
+          description: Created
+  /opportunities:
+    get:
+      summary: List opportunities
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create opportunity
+      responses:
+        '201':
+          description: Created
+  /opportunities/{opportunityId}/convert-to-project:
+    post:
+      summary: Convert approved opportunity to project
+      parameters:
+        - $ref: '#/components/parameters/opportunityId'
+      responses:
+        '201':
+          description: Project created
+  /projects:
+    get:
+      summary: List projects
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create project
+      responses:
+        '201':
+          description: Created
+  /projects/{projectId}/health:
+    post:
+      summary: Record project health snapshot
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '201':
+          description: Snapshot recorded
+  /projects/{projectId}/resource-demands:
+    post:
+      summary: Create resource demand
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '201':
+          description: Demand created
+  /allocations:
+    post:
+      summary: Create resource allocation
+      responses:
+        '201':
+          description: Allocation created
+  /allocations/{allocationId}/approve:
+    post:
+      summary: Approve allocation
+      parameters:
+        - $ref: '#/components/parameters/allocationId'
+      responses:
+        '200':
+          description: Allocation approved
+  /time-entries:
+    post:
+      summary: Create time entry
+      responses:
+        '201':
+          description: Time entry created
+  /time-entries/{timeEntryId}/submit:
+    post:
+      summary: Submit time entry
+      parameters:
+        - $ref: '#/components/parameters/timeEntryId'
+      responses:
+        '200':
+          description: Submitted
+  /time-entries/{timeEntryId}/approve:
+    post:
+      summary: Approve time entry
+      parameters:
+        - $ref: '#/components/parameters/timeEntryId'
+      responses:
+        '200':
+          description: Approved
+  /expenses:
+    post:
+      summary: Submit expense
+      responses:
+        '201':
+          description: Expense submitted
+  /expenses/{expenseId}/approve:
+    post:
+      summary: Approve expense
+      parameters:
+        - $ref: '#/components/parameters/expenseId'
+      responses:
+        '200':
+          description: Approved
+  /fiscal-periods:
+    get:
+      summary: List fiscal periods
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create fiscal period
+      responses:
+        '201':
+          description: Created
+  /fiscal-periods/{periodId}/close:
+    post:
+      summary: Close and lock period
+      parameters:
+        - $ref: '#/components/parameters/periodId'
+      responses:
+        '200':
+          description: Period closed
+  /billing-items:
+    get:
+      summary: List billing items
+      responses:
+        '200':
+          description: OK
+  /billing-items/{billingItemId}/mark-ready:
+    post:
+      summary: Mark billing item ready
+      parameters:
+        - $ref: '#/components/parameters/billingItemId'
+      responses:
+        '200':
+          description: Updated
+  /exports/erp:
+    post:
+      summary: Generate ERP export payload
+      responses:
+        '202':
+          description: Export queued
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    opportunityId:
+      name: opportunityId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    allocationId:
+      name: allocationId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    timeEntryId:
+      name: timeEntryId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    expenseId:
+      name: expenseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    periodId:
+      name: periodId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    billingItemId:
+      name: billingItemId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
