@@ -38,19 +38,6 @@ Project Intelligence Platform is an enterprise-grade application blueprint for p
 - `docs/rbac-matrix.md` – role-based access control model.
 - `docs/non-functional-and-success.md` – NFRs, SLAs, and success measures.
 
-
-## How do I use this?
-
-Start with `docs/getting-started.md` for a practical implementation path from discovery through production hardening.
-
-Quick summary:
-
-1. Confirm target workflows, roles, and policies with stakeholders.
-2. Apply `db/schema.sql` as your initial data model baseline.
-3. Import `api/openapi.yaml` into API tooling to generate service/client scaffolds.
-4. Deliver in phases: foundation -> time/resource core -> financial controls -> insights.
-5. Validate non-functional readiness and success metrics before rollout.
-
 ## Suggested implementation approach
 
 1. Stand up identity, RBAC, and foundational master data.
