@@ -45,3 +45,17 @@ Project Intelligence Platform is an enterprise-grade application blueprint for p
 3. Add project financial controls and billing readiness.
 4. Roll out executive dashboards and enterprise analytics integrations.
 
+## How do I use this?
+
+This repository is a design and implementation blueprint, not a running application.
+
+### Local API preview (no coding)
+
+You can preview the API contract in a browser without running a backend.
+
+1. Start a local web server from the repository root:
+
+   ```bash
+   python -m http.server 8000
+
+
